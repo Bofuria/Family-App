@@ -29,15 +29,19 @@ object DatabaseModule {
         )
         .fallbackToDestructiveMigration()
         .addCallback(object : RoomDatabase.Callback() {
-            override fun onDestructiveMigration(db: SupportSQLiteDatabase) {
-                super.onDestructiveMigration(db)
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
                 // Prepopulate the database with initial data
-                db.execSQL("INSERT INTO meals (name) VALUES ('Apple')")
-                db.execSQL("INSERT INTO meals (name) VALUES ('Banana')")
-                db.execSQL("INSERT INTO meals (name) VALUES ('Orange')")
-                db.execSQL("INSERT INTO meals (name) VALUES ('Mango')")
-                db.execSQL("INSERT INTO meals (name) VALUES ('Pineapple')")
-                db.execSQL("INSERT INTO meals (name) VALUES ('Pear')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Перці')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Голубці')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Пельмені')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('\"Наша\" картоша')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Картопляники')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Гречка')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Плов')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Картопля з м''ясом/сосисками')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Риба')")
+                db.execSQL("INSERT INTO meals (name) VALUES ('Макарони з м''ясом/сосисками')")
             }
         })
         .build()

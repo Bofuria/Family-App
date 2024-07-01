@@ -31,10 +31,12 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         lifecycleScope.launch {
-            viewModel.loadList()
+            viewModel.loadAllOptionsMenu()
+            viewModel.loadListFromHistory()
         }
 
         binding.shuffleButton.setOnClickListener {
+//            viewModel.loadAllOptionsMenu()
             viewModel.shuffleList()
             Snackbar.make(root, getString(R.string.list_shuffled), Snackbar.LENGTH_SHORT).show()
         }

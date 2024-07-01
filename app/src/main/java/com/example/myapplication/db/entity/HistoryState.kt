@@ -11,3 +11,8 @@ data class HistoryState(
     val item: String,
     val dateAdded: Date
 )
+
+data class PartialHistoryState(
+    val id: Long,
+    val dateAdded: Date
+)

@@ -32,10 +32,12 @@ class MenuViewModel @Inject constructor(private val mealRepository: MealReposito
     fun addNewMeal(name : String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                mealRepository.saveMeal(MealState(name = name))
-                loadMeals()
+                val newMeal = MealState(name = name)
+                mealRepository.saveMeal(newMeal)
+                _meals.postValue(_meals.value?.plus(newMeal) ?: listOf(newMeal))
             } catch (e: Exception) {
                 _error.postValue("Exception: $e")
+                println("Exception: $e")
             }
         }
     }
@@ -44,10 +46,11 @@ class MenuViewModel @Inject constructor(private val mealRepository: MealReposito
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 mealRepository.deleteMeal(item.id)
-                loadMeals()
+                _meals.postValue(_meals.value?.filter { it.id != item.id })
                 // TODO: success status notification (with Toast)
             } catch (e: Exception) {
                 _error.postValue("Exception: $e")
+                println("Exception: $e")
             }
         }
     }
@@ -56,10 +59,14 @@ class MenuViewModel @Inject constructor(private val mealRepository: MealReposito
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 mealRepository.updateMeal(id, newName)
-                loadMeals()
+                val updatedMeals = _meals.value!!.map {
+                    if (it.id == id) it.copy(name = newName) else it
+                }
+                _meals.postValue(updatedMeals)
                 // TODO: success status notification (with Toast)
             } catch (e: Exception) {
                 _error.postValue("Exception: $e")
+                println("Exception: $e")
             }
         }
     }

@@ -31,13 +31,6 @@ class HomeViewModel @Inject constructor (
 
     private var mealsStack = mutableListOf<MealState>()
 
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            val meals = mealRepository.getAllMeals() ?: emptyList()
-            mealsStack.addAll(meals)
-        }
-    }
-
     private var arrayForIteration = ArrayDeque<String>()
 
     fun shuffleList() {
@@ -51,7 +44,8 @@ class HomeViewModel @Inject constructor (
         if (arrayForIteration.isNotEmpty()) {
             arrayForIteration.removeFirst()
             _currentDish.value =
-                if (arrayForIteration.isNotEmpty()) arrayForIteration.first() else context.getString(R.string.empty_words_list)
+                if (arrayForIteration.isNotEmpty()) arrayForIteration.first()
+                else context.getString(R.string.empty_words_list)
         } else {
             _currentDish.value = context.getString(R.string.empty_words_list)
         }
@@ -78,7 +72,7 @@ class HomeViewModel @Inject constructor (
         }
     }
 
-    suspend fun loadList() {
+    suspend fun loadListFromHistory() {
         val state = mainRepository.getShuffledListState()
         if (state != null) {
             arrayForIteration.clear()
@@ -87,6 +81,14 @@ class HomeViewModel @Inject constructor (
         } else {
             arrayForIteration.addAll(mealsStack.map { it.name })
             _currentDish.value = arrayForIteration.first()
+        }
+    }
+
+    fun loadAllOptionsMenu() {
+        viewModelScope.launch(Dispatchers.IO) {
+            mealsStack.clear()
+            val meals = mealRepository.getAllMeals() ?: emptyList()
+            mealsStack.addAll(meals)
         }
     }
 }

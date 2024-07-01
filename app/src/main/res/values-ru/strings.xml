@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_history">История</string>
+    <string name="menu_menu">Меню</string>
+    <string name="empty_words_list">Блюда закончились, перемешайте</string>
+    <string name="list_shuffled">Список перемешан</string>
+    <string name="add_new_food">Добавить</string>
+    <string name="delete_item">Удалить</string>
+    <string name="edit_item">Изменить</string>
+    <string name="random">Следующее</string>
+    <string name="add_to_list">Добавить в список</string>
+    <string name="shuffle">Перемешать</string>
+    <string name="select_date">Выбрать дату</string>
+    <string name="save">Сохранить</string>
+</resources>

@@ -17,6 +17,8 @@ kspVersion = "1.9.0-1.0.12"
 roomVersion = "2.4.2"
 gsonVersion = "2.8.8"
 hiltAndroidxVersion = "1.2.0"
+recyclerview = "1.3.2"
+recyclerviewSelection = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +40,9 @@ room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "roomVersi
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
 hilt-andoroidx-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltAndroidxVersion" }
 hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltAndroidxVersion" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-recyclerview-selection = { group = "androidx.recyclerview", name = "recyclerview-selection", version.ref = "recyclerviewSelection" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

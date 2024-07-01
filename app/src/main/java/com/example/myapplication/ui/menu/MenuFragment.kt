@@ -13,11 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication.databinding.FragmentMenuBinding
 import com.example.myapplication.db.entity.MealState
 import com.example.myapplication.db.util.HistoryListAdapter
 import com.example.myapplication.db.util.MealAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
@@ -75,6 +77,13 @@ class MenuFragment : Fragment() {
             }
         }
         builder.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.viewModelScope.launch {
+//            viewModel.loadMeals()
+        }
     }
 
     override fun onDestroyView() {

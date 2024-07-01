@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="app_name" translatable="false">Food</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
@@ -16,5 +16,10 @@
     <string name="add_new_food">Add new</string>
     <string name="delete_item">Delete</string>
     <string name="edit_item">Edit</string>
-    <string name="edit_list_options_button">Edit button</string>
+    <string name="edit_list_options_button" translatable="false">Edit button</string>
+    <string name="random">Random</string>
+    <string name="add_to_list">Add to List</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="select_date">Select Date</string>
+    <string name="save">Save</string>
 </resources>

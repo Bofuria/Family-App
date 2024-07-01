@@ -32,14 +32,14 @@
             android:id="@+id/randomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Random"
+            android:text="@string/random"
             android:layout_marginEnd="10dp" />
 
         <Button
             android:id="@+id/addToListButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to List" />
+            android:text="@string/add_to_list" />
     </LinearLayout>
 
     <!-- Shuffle button below the row -->
@@ -47,7 +47,7 @@
         android:id="@+id/shuffleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shuffle"
+        android:text="@string/shuffle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

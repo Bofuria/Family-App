@@ -33,9 +33,9 @@ class MealAdapter(private val viewModel: MenuViewModel, context: Context, privat
 
         val meal = getItem(position)
         val mealName = itemView!!.findViewById<TextView>(R.id.meal_item_text)
-        val menuButton: ImageView = itemView.findViewById(R.id.menu_button)
-
         mealName.text = item.name
+
+        val menuButton: ImageView = itemView.findViewById(R.id.menu_button)
 
         menuButton.setOnClickListener {
             val popupMenu = PopupMenu(context, menuButton)
