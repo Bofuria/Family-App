@@ -2,6 +2,7 @@ package com.example.myapplication.db.repository
 
 import com.example.myapplication.db.dao.MealDao
 import com.example.myapplication.db.entity.MealState
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 // TODO: Make all functions work with same parameter signature
@@ -11,7 +12,7 @@ class MealRepository @Inject constructor(private val mealDao: MealDao) {
         mealDao.insert(item)
     }
 
-    suspend fun getAllMeals(): List<MealState>? {
+    fun getAllMeals(): Flow<List<MealState>> {
         return mealDao.getAllMeals()
     }
 

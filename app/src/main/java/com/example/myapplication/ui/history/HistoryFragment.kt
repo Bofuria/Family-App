@@ -70,9 +70,6 @@ class HistoryFragment : Fragment() {
                     R.id.action_add -> {
                         viewModel.showDialog()
                     }
-//                    android.R.id.home -> {
-//                        findNavController().navigateUp()
-//                    }
                 }
                 return true
             }
@@ -86,10 +83,6 @@ class HistoryFragment : Fragment() {
         viewModel.showDialogEvent.observe(viewLifecycleOwner) { dialog ->
             dialog?.show(parentFragmentManager, "HistoryDialogFragment")
         }
-
-        viewModel.mealsList.observe(viewLifecycleOwner, { updatedList ->
-
-        })
     }
 
     override fun onDestroyView() {

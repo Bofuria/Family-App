@@ -21,11 +21,16 @@ class MenuViewModel @Inject constructor(private val mealRepository: MealReposito
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    // TODO: убрать клоунские вызовы этой функции в других функциях
-    fun loadMeals() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val state = mealRepository.getAllMeals() ?: emptyList()
-            _meals.postValue(state)
+    init {
+        viewModelScope.launch {
+            loadMeals()
+        }
+    }
+    private fun loadMeals() {
+        viewModelScope.launch {
+            mealRepository.getAllMeals().collect { meals ->
+                _meals.postValue(meals)
+            }
         }
     }
 

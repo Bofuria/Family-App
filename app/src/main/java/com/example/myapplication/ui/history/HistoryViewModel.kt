@@ -28,8 +28,7 @@ class HistoryViewModel @Inject constructor (
     private val _historyList = MutableLiveData<List<HistoryState>>()
     val historyList: LiveData<List<HistoryState>> get() = _historyList
 
-    private val _mealsList = MutableLiveData<List<MealState>>()
-    val mealsList: LiveData<List<MealState>> get() = _mealsList
+    private val mealsList = mutableListOf<MealState>()
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -39,20 +38,22 @@ class HistoryViewModel @Inject constructor (
 
     init {
         loadHistory()
-        loadMeals()
+        observeMeals()
     }
 
-    fun loadHistory() {
+    private fun loadHistory() {
         viewModelScope.launch(Dispatchers.IO) {
             val state = historyRepository.loadHistory() ?: emptyList()
             _historyList.postValue(state)
         }
     }
 
-    fun loadMeals() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val meals = mealRepository.getAllMeals() ?: emptyList()
-            _mealsList.postValue(meals)
+    private fun observeMeals() {
+        viewModelScope.launch {
+            mealRepository.getAllMeals().collect { meals ->
+                mealsList.clear()
+                mealsList.addAll(meals)
+            }
         }
     }
 
@@ -79,13 +80,8 @@ class HistoryViewModel @Inject constructor (
     }
 
     fun showDialog() {
-        val meals = _mealsList.value
-        if (meals != null) {
-            val dialog = HistoryDialogFragment(meals)
-            _showDialogEvent.value = dialog
-        } else {
-            _error.value = "Meals list is not loaded yet."
-        }
+        val dialog = HistoryDialogFragment(mealsList)
+        _showDialogEvent.value = dialog
     }
 
     fun deleteHistoryItem(item: HistoryState) {

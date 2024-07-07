@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.myapplication.db.entity.MealState
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MealDao {
@@ -12,7 +13,7 @@ interface MealDao {
     suspend fun insert(state: MealState)
 
     @Query("SELECT * FROM meals")
-    suspend fun getAllMeals(): List<MealState>?
+    fun getAllMeals(): Flow<List<MealState>>
 
     @Query("SELECT * FROM meals WHERE id = :id")
     suspend fun getById(id : Long): MealState?

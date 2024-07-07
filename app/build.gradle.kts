@@ -36,8 +36,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
     buildToolsVersion = "34.0.0"
 }
@@ -54,6 +58,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.recyclerview.selection)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.ui.tooling.preview.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,6 +72,7 @@ dependencies {
     implementation(libs.gson)
     ksp(libs.hilt.andoroidx.compiler)
     implementation(libs.hilt.navigation)
+    implementation(libs.androidx.navigation)
 
 }
 

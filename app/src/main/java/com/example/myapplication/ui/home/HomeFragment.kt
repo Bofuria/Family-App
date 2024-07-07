@@ -30,10 +30,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        lifecycleScope.launch {
-            viewModel.loadAllOptionsMenu()
-            viewModel.loadListFromHistory()
-        }
+//        lifecycleScope.launch {
+//            viewModel.loadAllOptionsMenu()
+//            viewModel.loadListFromHistory()
+//        }
 
         binding.shuffleButton.setOnClickListener {
 //            viewModel.loadAllOptionsMenu()
