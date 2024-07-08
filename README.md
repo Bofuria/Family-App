@@ -2,8 +2,6 @@
 
 **Table of Contents**
 
-[TOCM]
-
 Small application (3 screens) that helps you to decide what should you eat for a dinner and keep track of all meals. The app also has feature to edit the menu by deleting and adding new meals. 
 
 *Development stack: MVVM, Hilt Dagger, Room, Jetpack Compose, LiveData, Flow, Coroutines.*
