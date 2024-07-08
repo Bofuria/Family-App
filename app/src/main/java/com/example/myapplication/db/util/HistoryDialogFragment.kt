@@ -80,7 +80,10 @@ class HistoryDialogFragment(
                 { _, year, month, dayOfMonth ->
                     calendar.set(year, month, dayOfMonth)
                     selectedDate = calendar.time
-                    dateButton.text = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate)
+                    dateButton.text =
+                        selectedDate?.let { it1 ->
+                            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(it1)
+                        }
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -91,12 +94,12 @@ class HistoryDialogFragment(
 
         saveButton.setOnClickListener {
             if (selectedDate != null && selectedMeal != null) {
-                val historyItem = HistoryState(item = selectedMeal!!.name, dateAdded = selectedDate!!) // TODO: check if fields are not empty
+                val historyItem = HistoryState(item = selectedMeal!!.name, dateAdded = selectedDate!!)
                 historyViewModel.saveHistoryItem(historyItem)
                 dismiss()
                 Toast.makeText(context, "Meal saved successfully!", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Please select a meal and a date", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please select a meal and a date", Toast.LENGTH_LONG).show()
             }
         }
     }

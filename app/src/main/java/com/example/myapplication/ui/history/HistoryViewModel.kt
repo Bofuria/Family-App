@@ -43,7 +43,7 @@ class HistoryViewModel @Inject constructor (
 
     private fun loadHistory() {
         viewModelScope.launch(Dispatchers.IO) {
-            val state = historyRepository.loadHistory() ?: emptyList()
+            val state = historyRepository.loadHistory()
             _historyList.postValue(state)
         }
     }

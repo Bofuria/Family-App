@@ -17,7 +17,7 @@ class HistoryRepository @Inject constructor(private val historyItemDao: HistoryI
         historyItemDao.insert(item)
     }
 
-    suspend fun loadHistory(): List<HistoryState>? {
+    suspend fun loadHistory(): List<HistoryState> {
         return historyItemDao.getAllHistory()
     }
 

@@ -15,7 +15,7 @@ interface HistoryItemDao {
     suspend fun insert(item: HistoryState)
 
     @Query("SELECT * FROM history_list ORDER BY dateAdded DESC")
-    suspend fun getAllHistory(): List<HistoryState>?
+    suspend fun getAllHistory(): List<HistoryState>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(historyList: List<HistoryState>)

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.googleServices)
 }
 
 android {
@@ -73,6 +74,8 @@ dependencies {
     ksp(libs.hilt.andoroidx.compiler)
     implementation(libs.hilt.navigation)
     implementation(libs.androidx.navigation)
+    implementation(platform(libs.google.firebase))
+    implementation(libs.google.firebase.analytics)
 
 }
 

@@ -16,11 +16,6 @@ class MealRepository @Inject constructor(private val mealDao: MealDao) {
         return mealDao.getAllMeals()
     }
 
-    suspend fun getById(id: Long): MealState {
-        val state = mealDao.getById(id) ?: throw NoSuchElementException("Meal with id $id not found")
-        return state;
-    }
-
     suspend fun updateMeal(id: Long, name: String) {
         val state = mealDao.updateMeal(id, name)
         if(state == 0) throw NoSuchElementException("Error updating meal with id $id")

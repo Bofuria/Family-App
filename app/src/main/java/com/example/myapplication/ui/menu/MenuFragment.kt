@@ -43,6 +43,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -70,6 +71,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentMenuBinding
 import com.example.myapplication.db.entity.MealState
+import com.example.myapplication.db.util.CustomToast
 import com.example.myapplication.db.util.HistoryListAdapter
 import com.example.myapplication.db.util.MealAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,10 +97,17 @@ class MenuFragment : Fragment() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuScreen(viewModel: MenuViewModel) {
+
     val context = LocalContext.current
     val meals by viewModel.meals.observeAsState(emptyList())
-    val error by viewModel.error.observeAsState("")
     var showDialog by remember { mutableStateOf(false) }
+
+    val status by viewModel.toastMessage.observeAsState()
+    LaunchedEffect(status) {
+        status?.let { (message, type) ->
+            CustomToast().showToast(context, message, type)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -113,9 +122,6 @@ fun MenuScreen(viewModel: MenuViewModel) {
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            if (error.isNotEmpty()) {
-                Toast.makeText(context, error, Toast.LENGTH_LONG).show()
-            }
 
             MealList(meals, viewModel)
 
@@ -150,7 +156,10 @@ fun MealItem(meal: MealState, onEdit: (MealState) -> Unit, onDelete: (MealState)
     var showEditDialog by remember { mutableStateOf(false) }
     var showDeleteDialog by remember { mutableStateOf(false) }
 
-    Box(Modifier.fillMaxWidth().padding(8.dp)) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .padding(8.dp)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
