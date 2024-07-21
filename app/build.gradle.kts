@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -9,6 +10,20 @@ plugins {
 android {
     namespace = "com.example.myapplication"
     compileSdk = 34
+
+    packaging  {
+        resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/LICENSE")
+        resources.excludes.add("META-INF/LICENSE.txt")
+        resources.excludes.add("META-INF/license.txt")
+        resources.excludes.add("META-INF/NOTICE")
+        resources.excludes.add("META-INF/NOTICE.txt")
+        resources.excludes.add("META-INF/notice.txt")
+        resources.excludes.add("META-INF/ASL2.0")
+        resources.excludes.add("META-INF/*.kotlin_module")
+        resources.excludes.add("META-INF/INDEX.LIST")
+        resources.excludes.add("protobuf.meta")
+    }
 
     defaultConfig {
         applicationId = "com.example.myapplication"
@@ -62,6 +77,7 @@ dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,8 +90,15 @@ dependencies {
     ksp(libs.hilt.andoroidx.compiler)
     implementation(libs.hilt.navigation)
     implementation(libs.androidx.navigation)
+
+    implementation(libs.firebase.ui.auth)
+
     implementation(platform(libs.google.firebase))
-    implementation(libs.google.firebase.analytics)
+    implementation(libs.google.firebase.auth)
+    implementation(libs.google.android.gms)
+
+    implementation(libs.firebase.admin)
+
 
 }
 

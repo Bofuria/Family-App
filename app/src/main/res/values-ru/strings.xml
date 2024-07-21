@@ -14,4 +14,5 @@
     <string name="shuffle">Перемешать</string>
     <string name="select_date">Выбрать дату</string>
     <string name="save">Сохранить</string>
+    <string name="sign_out">Выйти</string>
 </resources>
